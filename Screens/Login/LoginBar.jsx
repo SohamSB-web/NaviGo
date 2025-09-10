@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 
 const LoginBar = ({ onLogin }) => {
-    const [activeTab, setActiveTab] = useState('driver');
+    const [activeTab, setActiveTab] = useState('user'); // Changed initial state to 'user'
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
 
