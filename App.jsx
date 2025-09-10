@@ -1,19 +1,21 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
 import LogIn from './Screens/Login/Login';
 import GetStarted from './Screens/GetStarted/GetStarted';
+import HomePage from './Screens/HomePage/Home';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
-  const [isStarted, setIsStarted] = useState(false);
+  //const [isStarted, setIsStarted] = useState(false);
 
-  const handleGetStarted = () => {
-    setIsStarted(true);
-  };
+  //const handleGetStarted = () => {
+    //setIsStarted(true);
+  //};
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {isStarted ? <LogIn /> : <GetStarted onGetStarted={handleGetStarted} />}
+      {/*isStarted ? <LogIn /> : <GetStarted onGetStarted={handleGetStarted} />*/}
+      <HomePage />
     </SafeAreaView>
   );
 };
