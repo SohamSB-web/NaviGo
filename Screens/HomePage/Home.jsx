@@ -1,9 +1,8 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-
 const Home = ({ onBusPress }) => {
-    const [activeTab, setActiveTab] = useState('Home');
+    const [activeTab, setActiveTab] = useState('home');
 
     return (
         <View style={styles.container}>

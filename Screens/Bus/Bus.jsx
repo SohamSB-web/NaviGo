@@ -5,13 +5,13 @@ const Bus = ({ onBackToHome, onBusItemPress }) => {
     return (
         <View style={styles.container}>
             {/* Top Bar with Back Button and Title */}
-            <View style={styles.header}>
-                <TouchableOpacity style={[styles.backButton, styles.shadow]} onPress={onBackToHome}>
+            <TouchableOpacity style={styles.backButton} onPress={onBackToHome}>
                     <Image
                         source={require('../../Components/Icons/BackArrow.png')}
-                        style={[styles.backIcon, { tintColor: '#000' }]}
+                        style={styles.backIcon}
                     />
                 </TouchableOpacity>
+            <View style={styles.header}>
                 <Text style={styles.headerTitle}>BUS</Text>
                 {/* A placeholder View to balance the layout */}
                 <View style={{ width: 44, height: 44 }} />
@@ -118,14 +118,17 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     backButton: {
-        backgroundColor: '#ffffffff',
-        borderRadius: 15,
-        padding: 10,
-        elevation: 3,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
+    position: 'absolute',
+    marginLeft : 25,
+    marginVertical: 25,
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    padding: 10,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
     },
     backIcon: {
         width: 24,
