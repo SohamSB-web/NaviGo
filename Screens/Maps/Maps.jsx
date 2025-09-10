@@ -1,25 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { LeafletView } from 'react-native-leaflet-view';
 
-const Map = () => {
+const DEFAULT_LOCATION = {
+  latitude: 19.04526698375636,
+  longitude:  72.84167157838552
+};
+
+const Maps = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Map</Text>
-    </View>
+    <LeafletView
+      mapCenterPosition={{
+        lat: DEFAULT_LOCATION.latitude,
+        lng: DEFAULT_LOCATION.longitude,
+      }}
+      zoom={13}
+      mapMarkers={[
+        {
+          position: {
+            lat: DEFAULT_LOCATION.latitude,
+            lng: DEFAULT_LOCATION.longitude,
+          },
+          icon: '📍',
+          size: [32, 32],
+        },
+      ]}
+    />
   );
 };
 
-export default Map;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-  },
-});
+export default Maps;
