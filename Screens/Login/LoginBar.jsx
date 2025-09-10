@@ -49,10 +49,10 @@ const LoginBar = (props) => {
             {/* Login Button with Gradient */}
             <TouchableOpacity style={styles.loginButton}>
                 <LinearGradient
-                    colors={['#000000ff', '#898989ff']}
+                    colors={['#111315', '#737373']}
                     style={styles.gradient}
-                    start={{ x: 1, y: 0.5 }}
-                    end={{ x: 0.9, y: 1.8 }}
+                    start={{ x: 0, y: 1 }}
+                    end={{ x: 1, y: 0 }}
                 >
                     <Text style={styles.loginButtonText}>Login</Text>
                 </LinearGradient>
@@ -66,9 +66,9 @@ export default LoginBar;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#ffffff',
-        height: 450,
+        height: 470,
         borderRadius: 40,
-        width: 350,
+        width: 370,
         alignSelf: 'center',
         padding: 20,
         justifyContent: 'space-between',
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         height: 50,
         padding: 5,
         marginBottom: 30,
-        width: 310,
+        width: 330,
         justifyContent: 'space-around',
         alignItems: 'center',
     },

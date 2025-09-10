@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
   },
   
   barWrapper: {
-    marginBottom: 30,
+    marginBottom: 20,
   },
 });
