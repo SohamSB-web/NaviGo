@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, Image } from
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
-const GetStarted = () => {
+const GetStarted = ({ onGetStarted }) => {
     return (
         <ImageBackground
             source={require('../../Components/Icons/BG.png')}
@@ -27,7 +27,7 @@ const GetStarted = () => {
                             confidence and ease.
                         </Text>
                     </View>
-                    <TouchableOpacity style={styles.getStartedButton}>
+                    <TouchableOpacity style={styles.getStartedButton} onPress={onGetStarted}>
                         <LinearGradient
                             colors={['#111315', '#737373']}
                             style={styles.buttonGradient}
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     titleText: {
         color: '#fff',
         fontSize: 32,
-        fontWeight: 'bold',
+        fontWeight: '900',
         marginBottom: 10,
     },
     subtitleText: {

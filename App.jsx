@@ -1,19 +1,25 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import LogIn from './Screens/Login/Login'
-import GetStarted from './Screens/GetStarted/GetStarted'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import LogIn from './Screens/Login/Login';
+import GetStarted from './Screens/GetStarted/GetStarted';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
-  return (
-    <SafeAreaView style={{flex: 1 }}>
-      <GetStarted />
-    </SafeAreaView>
-  )
-}
+  const [isStarted, setIsStarted] = useState(false);
 
-export default App
+  const handleGetStarted = () => {
+    setIsStarted(true);
+  };
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      {isStarted ? <LogIn /> : <GetStarted onGetStarted={handleGetStarted} />}
+    </SafeAreaView>
+  );
+};
+
+export default App;
 
 const styles = StyleSheet.create({
-
-})
+  
+});
