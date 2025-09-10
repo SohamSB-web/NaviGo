@@ -16,7 +16,7 @@ const Maps = ({ onBackToBus }) => {
           lat: DEFAULT_LOCATION.latitude,
           lng: DEFAULT_LOCATION.longitude,
         }}
-        zoom={13}
+        zoom={50}
         mapMarkers={[
           {
             position: {
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    top: 50,
-    left: 20,
+    top: 20,
+    left: 50,
     backgroundColor: '#fff',
     borderRadius: 15,
     padding: 10,
