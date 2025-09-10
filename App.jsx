@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import LogIn from './Screens/Login/Login';
 import GetStarted from './Screens/GetStarted/GetStarted';
 import HomePage from './Screens/HomePage/Home';
+import Bus from './Screens/Bus/Bus';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
@@ -16,13 +17,19 @@ const App = () => {
     setCurrentPage('home');
   };
 
+  const handleBusPress = () => {
+    setCurrentPage('bus');
+  };
+
   const renderPage = () => {
     if (currentPage === 'getStarted') {
       return <GetStarted onGetStarted={handleGetStarted} />;
     } else if (currentPage === 'login') {
       return <LogIn onLogin={handleLogin} />;
     } else if (currentPage === 'home') {
-      return <HomePage />;
+      return <HomePage onBusPress={handleBusPress} />;
+    } else if (currentPage === 'bus') {
+      return <Bus />;
     }
   };
 

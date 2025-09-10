@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'rea
 import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Home = () => {
+const Home = ({ onBusPress }) => {
     const [activeTab, setActiveTab] = useState('Home');
 
     return (
@@ -20,38 +20,27 @@ const Home = () => {
                     </View>
                 </View>
 
-                {/* Search Bar */}
-                <View style={styles.searchBarContainer}>
-                    <Image
-                        source={require('../../Components/Icons/Logo.png')}
-                        style={styles.searchIcon}
-                    />
-                    <Text style={styles.searchText}>Search</Text>
-                </View>
-
                 {/* Suggestions Section */}
-                <Text style={styles.suggestionsText}>Suggestions</Text>
+                <Text style={styles.suggestionsText}>Services</Text>
                 <View style={styles.suggestionsContainer}>
-                    <View style={styles.suggestionItem}>
+                    <TouchableOpacity style={styles.suggestionItem} onPress={onBusPress}>
                         <Image source={require('../../Components/Icons/BusIcon.png')} style={styles.BusIcon} />
                         <Text style={styles.suggestionText}>Bus</Text>
-                    </View>
-                    <View style={styles.suggestionItem}>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.suggestionItem}>
                         <Image source={require('../../Components/Icons/TrainIcon.png')} style={styles.TrainIcon} />
                         <Text style={styles.suggestionText}>Train</Text>
-                    </View>
-                    <View style={styles.suggestionItem}>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.suggestionItem}>
                         <Image source={require('../../Components/Icons/MetroIcon.png')} style={styles.MetroIcon} />
                         <Text style={styles.suggestionText}>Metro</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
 
                 {/* Explore Section */}
                 <LinearGradient
                     colors={['#1c1c1c', '#333333']}
                     style={styles.exploreContainer}
-                    start={{ x: 1, y: 1 }}
-                    end={{ x: 1, y: 0 }}
                 >
                     <Text style={styles.exploreTitle}>Explore{"\n"}NaviGo</Text>
                 </LinearGradient>
@@ -127,27 +116,9 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: 'bold',
     },
-    searchBarContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#e0e0e0',
-        borderRadius: 30,
-        height: 60,
-        padding: 2,
-        marginBottom: 30,
-    },
-    searchIcon: {
-        width: 60,
-        height: 60,
-        marginRight: 5,
-    },
-    searchText: {
-        color: '#888',
-        fontSize: 16,
-    },
     suggestionsText: {
         color: '#000',
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 15,
     },
