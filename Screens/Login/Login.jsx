@@ -2,11 +2,11 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import LoginBar from './LoginBar';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Welcome to NaviGo</Text>
-      <LoginBar style={styles.barWrapper} />
+      <LoginBar style={styles.barWrapper} onLogin={onLogin} />
     </View>
   );
 };
@@ -19,15 +19,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#1c1c1e',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    padding : 20,
   },
   headerText: {
     color: '#fff',
     fontSize: 26,
     alignSelf: 'center',
-    marginBottom: 300
+    marginBottom: 300,
   },
   
   barWrapper: {
-    marginBottom: 20,
+    //marginBottom: 40,
   },
 });

@@ -3,11 +3,21 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 
-const LoginBar = (props) => {
+const LoginBar = ({ onLogin }) => {
     const [activeTab, setActiveTab] = useState('driver');
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLoginPress = () => {
+        if (activeTab === 'user' && id === 'demo' && password === '12345') {
+            onLogin();
+        } else {
+            alert('Invalid credentials or not a user.');
+        }
+    };
 
     return (
-        <SafeAreaView style={[styles.container, props.style]}>
+        <SafeAreaView style={[styles.container]}>
             <View style={styles.topBar}></View>
             <View style={styles.contentContainer}>
                 {/* Driver/User Toggle Switch */}
@@ -37,17 +47,21 @@ const LoginBar = (props) => {
                     style={styles.input}
                     placeholder={`Enter your ${activeTab === 'driver' ? 'ID' : 'Username'}`}
                     placeholderTextColor="#aaaaaa"
+                    value={id}
+                    onChangeText={setId}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Enter your password"
                     placeholderTextColor="#aaaaaa"
                     secureTextEntry={true}
+                    value={password}
+                    onChangeText={setPassword}
                 />
             </View>
 
             {/* Login Button with Gradient */}
-            <TouchableOpacity style={styles.loginButton}>
+            <TouchableOpacity style={styles.loginButton} onPress={handleLoginPress}>
                 <LinearGradient
                     colors={['#111315', '#737373']}
                     style={styles.gradient}
