@@ -25,7 +25,7 @@ const Home = ({ onBusPress, onServicesPress, onSavedPress, onProfilePress }) => 
           {/* Your Profile Section inside gradient */}
           <View style={styles.profileContainer}>
             <Image
-              source={require('../../Components/Icons/ProfileIcon.png')}
+              source={require('../../Components/Icons/Profile.png')}
               style={styles.profileImage}
             />
             <View style={styles.textContainer}>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   profileImage: {
-    width: 36,
+    width: 40,
     height: 40,
     marginBottom: 20,
   },
@@ -186,13 +186,13 @@ const styles = StyleSheet.create({
   exploreContainer: {
     backgroundColor: '#2b2b2e',
     borderRadius: 20,
-    height: 160,
-    padding: 30,
+    height: 190,
+    padding: 20,
     marginBottom: 20,
   },
   exploreTitle: {
     color: '#fff',
-    fontSize: 24,
+    fontSize: 35,
     fontWeight: 'bold',
   },
   bottomNav: {

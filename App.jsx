@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import { StyleSheet, Text, View, BackHandler, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import LogIn from './Screens/Login/Login';
 import GetStarted from './Screens/GetStarted/GetStarted';
 import HomePage from './Screens/HomePage/Home';
@@ -13,68 +13,75 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('getStarted');
+  const [history, setHistory] = useState(['getStarted']);
 
-  const handleGetStarted = () => {
-    setCurrentPage('login');
+  const navigateTo = (page) => {
+    setCurrentPage(page);
+    setHistory((prevHistory) => [...prevHistory, page]);
   };
 
   const handleLogin = (role) => {
     if (role === 'user') {
       setCurrentPage('home');
+      setHistory((prevHistory) => [...prevHistory, 'home']);
     } else if (role === 'driver') {
       setCurrentPage('driver');
+      setHistory((prevHistory) => [...prevHistory, 'driver']);
     }
   };
 
-  const handleLogout = () => {
-    setCurrentPage('login');
+  const onBackPress = () => {
+    // If the user is on the Home or Driver page, let the default back button behavior (exiting the app) happen
+    if (currentPage === 'home' || currentPage === 'driver' || currentPage === 'getStarted' || currentPage === 'login') {
+      BackHandler.exitApp();
+      return true; // Return true to indicate we've handled the event
+    }
+
+    // For all other pages, navigate back to the previous screen
+    if (history.length > 1) {
+      const newHistory = history.slice(0, -1);
+      setCurrentPage(newHistory[newHistory.length - 1]);
+      setHistory(newHistory);
+      return true; // Return true to indicate we've handled the event
+    }
+
+    return false; // Let the default behavior (exit app) happen if no history
   };
 
-  const handleBusPress = () => {
-    setCurrentPage('bus');
-  };
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
-  const handleBackToHome = () => {
-    setCurrentPage('home');
-  };
-
-  const handleBusItemPress = () => {
-    setCurrentPage('map');
-  };
-
-  const handleBackToBus = () => {
-    setCurrentPage('bus');
-  };
-
-  const navigateTo = (page) => {
-    setCurrentPage(page);
-  };
+    return () => backHandler.remove();
+  }, [currentPage, history]); // Re-run effect when currentPage or history changes
 
   const renderPage = () => {
-    if (currentPage === 'getStarted') {
-      return <GetStarted onGetStarted={handleGetStarted} />;
-    } else if (currentPage === 'login') {
-      return <LogIn onLogin={handleLogin} />;
-    } else if (currentPage === 'home') {
-      return <HomePage 
-        onBusPress={handleBusPress} 
-        onServicesPress={() => navigateTo('services')}
-        onSavedPress={() => navigateTo('saved')}
-        onProfilePress={() => navigateTo('profile')}
-        currentPage={currentPage}
-      />;
-    } else if (currentPage === 'driver') {
-      return <Driver onLogout={handleLogout} />;
-    } else if (currentPage === 'bus') {
-      return <Bus onBackToHome={handleBackToHome} onBusItemPress={handleBusItemPress} />;
-    } else if (currentPage === 'map') {
-      return <MapPage onBackToBus={handleBackToBus} />;
-    } else if (currentPage === 'services') {
-        return <Services onBackToHome={handleBackToHome} onNavigate={navigateTo} currentPage={currentPage} />;
-    } else if (currentPage === 'saved') {
-        return <Saved onBackToHome={handleBackToHome} onNavigate={navigateTo} currentPage={currentPage} />;
-    } else if (currentPage === 'profile') {
-        return <Profile onBackToHome={handleBackToHome} onNavigate={navigateTo} currentPage={currentPage} />;
+    switch (currentPage) {
+      case 'getStarted':
+        return <GetStarted onGetStarted={() => navigateTo('login')} />;
+      case 'login':
+        return <LogIn onLogin={handleLogin} />;
+      case 'home':
+        return <HomePage
+          onBusPress={() => navigateTo('bus')}
+          onServicesPress={() => navigateTo('services')}
+          onSavedPress={() => navigateTo('saved')}
+          onProfilePress={() => navigateTo('profile')}
+          currentPage={currentPage}
+        />;
+      case 'driver':
+        return <Driver onLogout={() => navigateTo('login')} />;
+      case 'bus':
+        return <Bus onBackToHome={() => navigateTo('home')} onBusItemPress={() => navigateTo('map')} />;
+      case 'map':
+        return <MapPage onBackToBus={() => navigateTo('bus')} />;
+      case 'services':
+        return <Services onNavigate={navigateTo} currentPage={currentPage} />;
+      case 'saved':
+        return <Saved onNavigate={navigateTo} currentPage={currentPage} />;
+      case 'profile':
+        return <Profile onNavigate={navigateTo} currentPage={currentPage} />;
+      default:
+        return null;
     }
   };
 
@@ -88,5 +95,5 @@ const App = () => {
 export default App;
 
 const styles = StyleSheet.create({
-  
+  // Your styles here
 });
