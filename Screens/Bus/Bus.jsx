@@ -1,102 +1,111 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import React from 'react';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Bus = ({ onBackToHome, onBusItemPress }) => {
     return (
         <View style={styles.container}>
-            {/* Top Bar with Back Button and Title */}
-            <TouchableOpacity style={styles.backButton} onPress={onBackToHome}>
-                    <Image
-                        source={require('../../Components/Icons/BackArrow.png')}
-                        style={styles.backIcon}
-                    />
-                </TouchableOpacity>
-            <View style={styles.header}>
-                <Text style={styles.headerTitle}>BUS</Text>
-                {/* A placeholder View to balance the layout */}
-                <View style={{ width: 44, height: 44 }} />
-            </View>
-
-            {/* Search Bar */}
-            <View style={[styles.searchBarContainer, styles.shadow]}>
-                <Text style={styles.searchText}>Search</Text>
-            </View>
-
-            {/* Nearest Bus Stop Section */}
-            <Text style={styles.sectionTitle}>Nearest bus stop</Text>
-            <View style={[styles.busStopContainer, styles.shadowContainer]}>
-                <View style={styles.busStopItem}>
-                    <Image
-                        source={require('../../Components/Icons/BusStop.png')}
-                        style={[styles.busStopIcon, { tintColor: '#000' }]}
-                    />
-                    <View style={styles.busStopTextContainer}>
-                        <Text style={styles.busStopName}>St Xaviers Technical Institute</Text>
+            <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+                {/* Gradient Header */}
+                <LinearGradient
+                    colors={['#3d3d3dff', '#000000ff']}
+                    style={styles.headerGradient}
+                >
+                    {/* Back button, title, and search bar */}
+                    <View style={styles.headerContainer}>
+                        <TouchableOpacity style={styles.backButton} onPress={onBackToHome}>
+                            <Image
+                                source={require('../../Components/Icons/BackArrow.png')}
+                                style={styles.backIcon}
+                            />
+                        </TouchableOpacity>
+                        <Text style={styles.headerTitle}>BUS</Text>
+                        <View style={{ width: 44, height: 44 }} />
                     </View>
-                    <View style={styles.walkContainer}>
-                        <Text style={styles.walkText}>2 mins away</Text>
+                    <View style={[styles.searchBarContainer, styles.shadow]}>
+                        <Text style={styles.searchText}>Search</Text>
                     </View>
+                </LinearGradient>
+
+                {/* White Container */}
+                <View style={styles.whiteContainer}>
+                    {/* Nearest Bus Stop Section */}
+                    <Text style={styles.sectionTitle}>Nearest bus stop</Text>
+                    <View style={[styles.busStopContainer, styles.shadowContainer]}>
+                        <View style={styles.busStopItem}>
+                            <Image
+                                source={require('../../Components/Icons/BusStop.png')}
+                                style={[styles.busStopIcon, { tintColor: '#000' }]}
+                            />
+                            <View style={styles.busStopTextContainer}>
+                                <Text style={styles.busStopName}>St Xaviers Technical Institute</Text>
+                            </View>
+                            <View style={styles.walkContainer}>
+                                <Text style={styles.walkText}>2 mins away</Text>
+                            </View>
+                        </View>
+                    </View>
+
+                    {/* Buses Near You Section */}
+                    <Text style={styles.sectionTitle}>Buses near you</Text>
+                    <ScrollView style={styles.busesNearYou}>
+                        <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
+                            <Image
+                                source={require('../../Components/Icons/Bus.png')}
+                                style={[styles.busIcon, { tintColor: '#000' }]}
+                            />
+                            <View style={styles.busInfo}>
+                                <Text style={styles.busNumber}>A-376</Text>
+                                <Text style={styles.busRoute}>To Mahim Bus Station</Text>
+                            </View>
+                            <Text style={styles.busTime}>In 7 min</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
+                            <Image
+                                source={require('../../Components/Icons/Bus.png')}
+                                style={[styles.busIcon, { tintColor: '#000' }]}
+                            />
+                            <View style={styles.busInfo}>
+                                <Text style={styles.busNumber}>87</Text>
+                                <Text style={styles.busRoute}>Bandra Colony Bus Station - Mantralaya</Text>
+                            </View>
+                            <Text style={styles.busTime}>In 7 min</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
+                            <Image
+                                source={require('../../Components/Icons/Bus.png')}
+                                style={[styles.busIcon, { tintColor: '#000' }]}
+                            />
+                            <View style={styles.busInfo}>
+                                <Text style={styles.busNumber}>212</Text>
+                                <Text style={styles.busRoute}>Bandra Reclamation Bus Station - Prabodha...</Text>
+                            </View>
+                            <Text style={styles.busTime}>In 7 min</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
+                            <Image
+                                source={require('../../Components/Icons/Bus.png')}
+                                style={[styles.busIcon, { tintColor: '#000' }]}
+                            />
+                            <View style={styles.busInfo}>
+                                <Text style={styles.busNumber}>C-440</Text>
+                                <Text style={styles.busRoute}>Wadala Depot - Borivali Station East</Text>
+                            </View>
+                            <Text style={styles.busTime}>In 7 min</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
+                            <Image
+                                source={require('../../Components/Icons/Bus.png')}
+                                style={[styles.busIcon, { tintColor: '#000' }]}
+                            />
+                            <View style={styles.busInfo}>
+                                <Text style={styles.busNumber}>46</Text>
+                                <Text style={styles.busRoute}>Dharavi Depot - Ferry Wharf</Text>
+                            </View>
+                            <Text style={styles.busTime}>In 7 min</Text>
+                        </TouchableOpacity>
+                    </ScrollView>
                 </View>
-            </View>
-
-            {/* Buses Near You Section */}
-            <Text style={styles.sectionTitle}>Buses near you</Text>
-            <ScrollView style={styles.busesNearYou}>
-                <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
-                    <Image
-                        source={require('../../Components/Icons/Bus.png')}
-                        style={[styles.busIcon, { tintColor: '#000' }]}
-                    />
-                    <View style={styles.busInfo}>
-                        <Text style={styles.busNumber}>A-376</Text>
-                        <Text style={styles.busRoute}>To Mahim Bus Station</Text>
-                    </View>
-                    <Text style={styles.busTime}>In 7 min</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
-                    <Image
-                        source={require('../../Components/Icons/Bus.png')}
-                        style={[styles.busIcon, { tintColor: '#000' }]}
-                    />
-                    <View style={styles.busInfo}>
-                        <Text style={styles.busNumber}>87</Text>
-                        <Text style={styles.busRoute}>Bandra Colony Bus Station - Mantralaya</Text>
-                    </View>
-                    <Text style={styles.busTime}>In 7 min</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
-                    <Image
-                        source={require('../../Components/Icons/Bus.png')}
-                        style={[styles.busIcon, { tintColor: '#000' }]}
-                    />
-                    <View style={styles.busInfo}>
-                        <Text style={styles.busNumber}>212</Text>
-                        <Text style={styles.busRoute}>Bandra Reclamation Bus Station - Prabodha...</Text>
-                    </View>
-                    <Text style={styles.busTime}>In 7 min</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
-                    <Image
-                        source={require('../../Components/Icons/Bus.png')}
-                        style={[styles.busIcon, { tintColor: '#000' }]}
-                    />
-                    <View style={styles.busInfo}>
-                        <Text style={styles.busNumber}>C-440</Text>
-                        <Text style={styles.busRoute}>Wadala Depot - Borivali Station East</Text>
-                    </View>
-                    <Text style={styles.busTime}>In 7 min</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
-                    <Image
-                        source={require('../../Components/Icons/Bus.png')}
-                        style={[styles.busIcon, { tintColor: '#000' }]}
-                    />
-                    <View style={styles.busInfo}>
-                        <Text style={styles.busNumber}>46</Text>
-                        <Text style={styles.busRoute}>Dharavi Depot - Ferry Wharf</Text>
-                    </View>
-                    <Text style={styles.busTime}>In 7 min</Text>
-                </TouchableOpacity>
             </ScrollView>
         </View>
     );
@@ -107,28 +116,32 @@ export default Bus;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        paddingHorizontal: 20,
-        paddingTop: 50,
+        backgroundColor: '#ffffffff',
     },
-    header: {
+    scrollView: {
+        flex: 1,
+    },
+    headerGradient: {
+        paddingTop: 50,
+        paddingBottom: 20,
+        paddingHorizontal: 25,
+        height: 250, // Increased height to make the gradient container taller
+    },
+    headerContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: 20,
     },
     backButton: {
-    position: 'absolute',
-    marginLeft : 25,
-    marginVertical: 25,
-    backgroundColor: '#fff',
-    borderRadius: 15,
-    padding: 10,
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+        backgroundColor: '#fff',
+        borderRadius: 15,
+        padding: 10,
+        elevation: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
     },
     backIcon: {
         width: 24,
@@ -136,14 +149,12 @@ const styles = StyleSheet.create({
         tintColor: '#000',
     },
     headerTitle: {
-        color: '#000',
+        color: '#fff',
         fontSize: 24,
         fontWeight: 'bold',
-        position: 'absolute',
-        alignSelf: 'center',
-        left: 0,
-        right: 0,
         textAlign: 'center',
+        // Align title with center while back button is present
+        flex: 1,
     },
     searchBarContainer: {
         flexDirection: 'row',
@@ -152,18 +163,24 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         height: 50,
         paddingHorizontal: 15,
-        marginBottom: 30,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 3.84,
         elevation: 5,
-        width: 360,
-        alignSelf: 'center',
     },
     searchText: {
         color: '#888',
         fontSize: 16,
+    },
+    whiteContainer: {
+        backgroundColor: '#fff',
+        marginTop: -50,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        paddingHorizontal: 20,
+        paddingTop: 40,
+        paddingBottom: 20,
     },
     sectionTitle: {
         color: '#000',
@@ -175,8 +192,6 @@ const styles = StyleSheet.create({
     busStopContainer: {
         backgroundColor: '#ffffffff',
         borderRadius: 20,
-        width: 360,
-        alignSelf: 'center',
         padding: 15,
         marginBottom: 20,
     },
@@ -216,12 +231,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         paddingVertical: 4,
     },
-    walkIcon: {
-        width: 16,
-        height: 16,
-        tintColor: '#000',
-        marginRight: 5,
-    },
     walkText: {
         color: '#000',
         fontSize: 12,
@@ -232,9 +241,9 @@ const styles = StyleSheet.create({
     busItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        alignSelf: 'center',
-        width: 360,
         backgroundColor: '#ffffffff',
+        marginLeft : 5,
+        marginRight : 5,
         borderRadius: 10,
         padding: 15,
         marginBottom: 10,
