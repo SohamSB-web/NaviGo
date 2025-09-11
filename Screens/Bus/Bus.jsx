@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
+import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
 const Bus = ({ onBackToHome, onBusItemPress }) => {
+    const [searchText, setSearchText] = useState('');
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
@@ -23,7 +25,13 @@ const Bus = ({ onBackToHome, onBusItemPress }) => {
                         <View style={{ width: 44, height: 44 }} />
                     </View>
                     <View style={[styles.searchBarContainer, styles.shadow]}>
-                        <Text style={styles.searchText}>Search</Text>
+                        <TextInput
+                            style={styles.searchInput}
+                            placeholder="Search"
+                            placeholderTextColor="#888"
+                            value={searchText}
+                            onChangeText={setSearchText}
+                        />
                     </View>
                 </LinearGradient>
 
@@ -160,7 +168,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#ffffffff',
-        borderRadius: 20,
+        borderRadius: 30,
         height: 50,
         paddingHorizontal: 15,
         shadowColor: '#000',
@@ -169,8 +177,9 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,
     },
-    searchText: {
-        color: '#888',
+    searchInput: {
+        flex: 1,
+        color: '#000',
         fontSize: 16,
     },
     whiteContainer: {
@@ -242,11 +251,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#ffffffff',
-        marginLeft : 5,
-        marginRight : 5,
-        borderRadius: 10,
+        borderRadius: 20,
         padding: 15,
         marginBottom: 10,
+        marginRight: 5,
+        marginLeft: 5,
     },
     busIcon: {
         width: 24,
