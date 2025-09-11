@@ -9,10 +9,12 @@ const LoginBar = ({ onLogin }) => {
     const [password, setPassword] = useState('');
 
     const handleLoginPress = () => {
-        if (activeTab === 'user' && id === 'demo' && password === '12345') {
-            onLogin();
+        if (activeTab === 'user' && id === 'user' && password === '12345') {
+            onLogin('user');
+        } else if (activeTab === 'driver' && id === 'driver' && password === '12345') {
+            onLogin('driver');
         } else {
-            alert('Invalid credentials or not a user.');
+            alert('Invalid credentials.');
         }
     };
 
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ccc',
         borderRadius: 2.5,
         alignSelf: 'center'
-        
+
     },
     contentContainer: {
         alignItems: 'center',

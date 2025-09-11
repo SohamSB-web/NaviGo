@@ -5,6 +5,7 @@ import GetStarted from './Screens/GetStarted/GetStarted';
 import HomePage from './Screens/HomePage/Home';
 import Bus from './Screens/Bus/Bus';
 import MapPage from './Screens/Maps/Maps';
+import Driver from './Screens/DriverHome/Driver'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
@@ -14,8 +15,16 @@ const App = () => {
     setCurrentPage('login');
   };
 
-  const handleLogin = () => {
-    setCurrentPage('home');
+  const handleLogin = (role) => {
+    if (role === 'user') {
+      setCurrentPage('home');
+    } else if (role === 'driver') {
+      setCurrentPage('driver');
+    }
+  };
+
+  const handleLogout = () => {
+    setCurrentPage('login');
   };
 
   const handleBusPress = () => {
@@ -41,6 +50,8 @@ const App = () => {
       return <LogIn onLogin={handleLogin} />;
     } else if (currentPage === 'home') {
       return <HomePage onBusPress={handleBusPress} />;
+    } else if (currentPage === 'driver') {
+      return <Driver onLogout={handleLogout} />;
     } else if (currentPage === 'bus') {
       return <Bus onBackToHome={handleBackToHome} onBusItemPress={handleBusItemPress} />;
     } else if (currentPage === 'map') {
