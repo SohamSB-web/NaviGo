@@ -7,36 +7,36 @@ const Bus = ({ onBackToHome, onBusItemPress }) => {
 
     return (
         <View style={styles.container}>
-            <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                {/* Gradient Header */}
-                <LinearGradient
-                    colors={['#3d3d3dff', '#000000ff']}
-                    style={styles.headerGradient}
-                >
-                    {/* Back button, title, and search bar */}
-                    <View style={styles.headerContainer}>
-                        <TouchableOpacity style={styles.backButton} onPress={onBackToHome}>
-                            <Image
-                                source={require('../../Components/Icons/BackArrow.png')}
-                                style={styles.backIcon}
-                            />
-                        </TouchableOpacity>
-                        <Text style={styles.headerTitle}>BUS</Text>
-                        <View style={{ width: 44, height: 44 }} />
-                    </View>
-                    <View style={[styles.searchBarContainer, styles.shadow]}>
-                        <TextInput
-                            style={styles.searchInput}
-                            placeholder="Search"
-                            placeholderTextColor="#888"
-                            value={searchText}
-                            onChangeText={setSearchText}
+            {/* Gradient Header */}
+            <LinearGradient
+                colors={['#3d3d3dff', '#000000ff']}
+                style={styles.headerGradient}
+            >
+                {/* Back button, title, and search bar */}
+                <View style={styles.headerContainer}>
+                    <TouchableOpacity style={styles.backButton} onPress={onBackToHome}>
+                        <Image
+                            source={require('../../Components/Icons/BackArrow.png')}
+                            style={styles.backIcon}
                         />
-                    </View>
-                </LinearGradient>
+                    </TouchableOpacity>
+                    <Text style={styles.headerTitle}>BUS</Text>
+                    <View style={{ width: 44, height: 44 }} />
+                </View>
+                <View style={[styles.searchBarContainer, styles.shadow]}>
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder="Search"
+                        placeholderTextColor="#888"
+                        value={searchText}
+                        onChangeText={setSearchText}
+                    />
+                </View>
+            </LinearGradient>
 
-                {/* White Container */}
-                <View style={styles.whiteContainer}>
+            {/* White Container with ScrollView */}
+            <View style={styles.whiteContainer}>
+                <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                     {/* Nearest Bus Stop Section */}
                     <Text style={styles.sectionTitle}>Nearest bus stop</Text>
                     <View style={[styles.busStopContainer, styles.shadowContainer]}>
@@ -56,7 +56,7 @@ const Bus = ({ onBackToHome, onBusItemPress }) => {
 
                     {/* Buses Near You Section */}
                     <Text style={styles.sectionTitle}>Buses near you</Text>
-                    <ScrollView style={styles.busesNearYou}>
+                    <View style={styles.busesNearYou}>
                         <TouchableOpacity style={[styles.busItem, styles.shadowContainer]} onPress={onBusItemPress}>
                             <Image
                                 source={require('../../Components/Icons/Bus.png')}
@@ -112,9 +112,9 @@ const Bus = ({ onBackToHome, onBusItemPress }) => {
                             </View>
                             <Text style={styles.busTime}>In 7 min</Text>
                         </TouchableOpacity>
-                    </ScrollView>
-                </View>
-            </ScrollView>
+                    </View>
+                </ScrollView>
+            </View>
         </View>
     );
 };
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         paddingTop: 50,
         paddingBottom: 20,
         paddingHorizontal: 25,
-        height: 250, // Increased height to make the gradient container taller
+        height: 250,
     },
     headerContainer: {
         flexDirection: 'row',
@@ -161,7 +161,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
-        // Align title with center while back button is present
         flex: 1,
     },
     searchBarContainer: {
@@ -183,6 +182,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     whiteContainer: {
+        flex: 1,
         backgroundColor: '#fff',
         marginTop: -50,
         borderTopLeftRadius: 20,
@@ -200,6 +200,8 @@ const styles = StyleSheet.create({
     },
     busStopContainer: {
         backgroundColor: '#ffffffff',
+        marginLeft:5,
+        marginRight:5,
         borderRadius: 20,
         padding: 15,
         marginBottom: 20,
@@ -245,7 +247,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     busesNearYou: {
-        // No changes needed here
+        // We now need to remove the ScrollView from here as it's outside
     },
     busItem: {
         flexDirection: 'row',
