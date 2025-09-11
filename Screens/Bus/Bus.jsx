@@ -46,7 +46,7 @@ const Bus = ({ onBackToHome, onBusItemPress }) => {
                                 style={[styles.busStopIcon, { tintColor: '#000' }]}
                             />
                             <View style={styles.busStopTextContainer}>
-                                <Text style={styles.busStopName}>St Xaviers Technical Institute</Text>
+                                <Text style={styles.busStopName}>Xaviers Technical Institute</Text>
                             </View>
                             <View style={styles.walkContainer}>
                                 <Text style={styles.walkText}>2 mins away</Text>
