@@ -2,8 +2,16 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'rea
 import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Home = ({ onBusPress }) => {
+const Home = ({ onBusPress, onServicesPress, onSavedPress, onProfilePress }) => {
   const [activeTab, setActiveTab] = useState('Home');
+
+  // Helper function to handle tab presses
+  const handleTabPress = (tabName, onPressFunction) => {
+    setActiveTab(tabName);
+    if (onPressFunction) {
+      onPressFunction();
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -32,7 +40,7 @@ const Home = ({ onBusPress }) => {
           {/* Services Section */}
           <Text style={styles.suggestionsText}>Services</Text>
           <View style={styles.suggestionsContainer}>
-            <TouchableOpacity style={styles.suggestionItem} onPress={onBusPress}>
+            <TouchableOpacity style={styles.suggestionItem} onPress={() => handleTabPress('Bus', onBusPress)}>
               <Image source={require('../../Components/Icons/BusIcon.png')} style={styles.BusIcon} />
               <Text style={styles.suggestionText}>Bus</Text>
             </TouchableOpacity>
@@ -58,28 +66,28 @@ const Home = ({ onBusPress }) => {
 
       {/* Bottom Navigation Bar */}
       <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navItem} onPress={() => setActiveTab('Home')}>
+        <TouchableOpacity style={styles.navItem} onPress={() => handleTabPress('Home', () => setActiveTab('Home'))}>
           <Image
             source={require('../../Components/Icons/HomeIcon.png')}
             style={[styles.navIcon1, activeTab === 'Home' && { tintColor: '#000' }]}
           />
           <Text style={[styles.navText, activeTab === 'Home' && styles.navTextActive]}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => setActiveTab('Services')}>
+        <TouchableOpacity style={styles.navItem} onPress={() => handleTabPress('Services', onServicesPress)}>
           <Image
             source={require('../../Components/Icons/ServicesIcon.png')}
             style={[styles.navIcon1, activeTab === 'Services' && { tintColor: '#000' }]}
           />
           <Text style={[styles.navText, activeTab === 'Services' && styles.navTextActive]}>Services</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => setActiveTab('Saved')}>
+        <TouchableOpacity style={styles.navItem} onPress={() => handleTabPress('Saved', onSavedPress)}>
           <Image
             source={require('../../Components/Icons/SavedIcon.png')}
             style={[styles.navIcon2, activeTab === 'Saved' && { tintColor: '#000' }]}
           />
           <Text style={[styles.navText, activeTab === 'Saved' && styles.navTextActive]}>Saved</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => setActiveTab('Profile')}>
+        <TouchableOpacity style={styles.navItem} onPress={() => handleTabPress('Profile', onProfilePress)}>
           <Image
             source={require('../../Components/Icons/ProfileIcon.png')}
             style={[styles.navIcon2, activeTab === 'Profile' && { tintColor: '#000' }]}
